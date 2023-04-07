@@ -14,12 +14,14 @@ class DoctorCard extends StatefulWidget {
     this.isAdult = false,
     this.isChild = false,
     required this.doctorColor,
+    this.doctorPhone = '',
   });
 
   final String doctorName;
   final String doctorPosition;
   final String doctorImage;
   final Color doctorColor;
+  final String doctorPhone;
   final bool isQualify;
   final String experience;
   final String reviews;
@@ -40,7 +42,13 @@ class _DoctorCardState extends State<DoctorCard> {
       onTapCancel: () => setState(() => _isPressed = false),
       onTapUp: (value) {
         setState(() => _isPressed = false);
-        Navigator.pushNamed(context, '/doctor');
+        Navigator.pushNamed(context, '/doctor', arguments: {
+          'name': widget.doctorName,
+          'position': widget.doctorPosition,
+          'phone': widget.doctorPhone,
+          'color': widget.doctorColor,
+          'image': widget.doctorImage
+        });
       },
       child: AnimatedContainer(
         width: 320.0,

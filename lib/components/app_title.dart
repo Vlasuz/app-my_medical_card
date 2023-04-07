@@ -24,22 +24,24 @@ class _AppTitleState extends State<AppTitle> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SvgPicture.asset(widget.icon),
-        SizedBox(
+        const SizedBox(
           width: 8.0,
         ),
         Text(
           widget.title,
-          style: TextStyle(color: Color(0xFF332A3A), fontSize: 20.0),
+          style: const TextStyle(color: Color(0xFF332A3A), fontSize: 20.0),
         ),
-        Spacer(),
+        const Spacer(),
         widget.isButtonMore
             ? TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  print('view more');
+                },
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.white,
                   padding: EdgeInsets.zero,
                 ),
-                child: Text(
+                child: const Text(
                   'Больше',
                   style: TextStyle(
                     color: Color(0xFFF19520),
@@ -47,7 +49,7 @@ class _AppTitleState extends State<AppTitle> {
                   ),
                 ),
               )
-            : SizedBox(),
+            : const SizedBox(),
       ],
     );
   }

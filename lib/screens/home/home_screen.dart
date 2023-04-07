@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBarCustom(),
+      bottomNavigationBar: const BottomNavigationBarCustom(),
     );
   }
 }

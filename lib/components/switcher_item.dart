@@ -27,7 +27,7 @@ class _SwitcherItemState extends State<SwitcherItem> {
               fontFamily: 'Rubik_bold',
             ),
           ),
-          SwitcherCustom(),
+          const SwitcherCustom(),
         ],
       ),
     );

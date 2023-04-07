@@ -84,6 +84,9 @@ flutter:
      - family: Rubik_medium
        fonts:
          - asset: assets/fonts/Rubik-Medium.ttf
+     - family: Rubik_regular
+       fonts:
+         - asset: assets/fonts/Rubik-Regular.ttf
      - family: Rubik_one
        fonts:
          - asset: assets/fonts/RubikOne-Regular.ttf

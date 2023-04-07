@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../components/app_title.dart';
+import 'components/calendar_day.dart';
+import 'components/calendar_days.dart';
+import 'components/calendar_times.dart';
+import 'components/doctor_top.dart';
+import 'components/make_appointment.dart';
+import 'components/review_item.dart';
+import 'components/reviews_block.dart';
+import 'components/title_reviews.dart';
+
 class DoctorScreen extends StatefulWidget {
   const DoctorScreen({Key? key}) : super(key: key);
 
@@ -11,64 +21,82 @@ class DoctorScreen extends StatefulWidget {
 class _DoctorScreenState extends State<DoctorScreen> {
   @override
   Widget build(BuildContext context) {
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <String, dynamic>{}) as Map;
+
     return Scaffold(
-      body: Container(
-        height: 270.0,
-        color: Color(0xFF1EAFF9),
-        child: Stack(
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
           children: [
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: SvgPicture.asset('assets/images/doctor_icon_big-1.svg'),
+            DoctorTop(
+              name: arguments['name'],
+              position: arguments['position'],
+              phone: arguments['phone'],
+              image: arguments['image'],
+              color: arguments['color'],
             ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              height: 200.0,
-              child: Padding(
-                padding: EdgeInsets.only(left: 16.0, right: 16.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: 12.0,
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                            padding: EdgeInsets.zero
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: SvgPicture.asset('assets/icons/arrow-left.svg'),
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Column(
-                          children: [
-                            Text('Алена Кобылинская'),
-                            Text('Кардиолог')
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            TextButton(
-                              onPressed: () {},
-                              child: Text('1'),
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              child: Text('2'),
-                            ),
-                          ],
-                        )
-                      ],
-                    )
-                  ],
-                ),
+            Container(
+              transform: Matrix4.translationValues(0, -12.0, 0),
+              width: MediaQuery.of(context).size.width,
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  AppTitle(
+                    title: 'О докторе',
+                    icon: 'assets/icons/ico_title-plus.svg',
+                  ),
+                  SizedBox(
+                    height: 16.0,
+                  ),
+                  Text(
+                    'Кардиологи — это медицинские работники, которые исследуют и лечат заболевания, связанные с сердечно-сосудистой системой, включая сердце и кровеносные сосуды. Они также помогают своим пациентам узнать о факторах риска сердечных заболеваний и определить, какое лечение или процедуру им следует пройти.',
+                    style: TextStyle(
+                        color: Color(0xFF332A3A),
+                        fontFamily: 'Rubik_regular',
+                        fontSize: 14.0),
+                  ),
+                  Text(''),
+                  Text(
+                    'Детский кардиолог — это врач-специалист в области кардиологии, который занимается лечением и диагностикой сердечных осложнений у детей.',
+                    style: TextStyle(
+                        color: Color(0xFF332A3A),
+                        fontFamily: 'Rubik_regular',
+                        fontSize: 14.0),
+                  ),
+                  SizedBox(
+                    height: 32.0,
+                  ),
+                  TitleReviews(),
+                  ReviewsBlock(),
+                  SizedBox(
+                    height: 32.0,
+                  ),
+                  AppTitle(
+                      title: 'Расписания',
+                      icon: 'assets/icons/ico_title-empty_calendar.svg'),
+                  SizedBox(
+                    height: 16.0,
+                  ),
+                  CalendarDays(),
+                  SizedBox(
+                    height: 32.0,
+                  ),
+                  AppTitle(
+                    title: 'Выберите время',
+                    icon: 'assets/icons/ico_title-clock.svg',
+                  ),
+                  SizedBox(
+                    height: 16.0,
+                  ),
+                  CalendarTimes(),
+                  MakeAppointment(),
+                ],
               ),
             )
           ],
