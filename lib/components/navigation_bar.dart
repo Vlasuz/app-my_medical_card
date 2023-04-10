@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:my_medical_card/screens/doctor/doctor_screen.dart';
+import 'package:my_medical_card/screens/home/home_screen.dart';
 
 import 'navigation_bar_item.dart';
 
 class BottomNavigationBarCustom extends StatefulWidget {
-  const BottomNavigationBarCustom({Key? key}) : super(key: key);
+  const BottomNavigationBarCustom({
+    Key? key,
+    required this.setScreen,
+    required this.BarItemList,
+  }) : super(key: key);
+
+  final Function setScreen;
+  final List BarItemList;
 
   @override
   State<BottomNavigationBarCustom> createState() =>
@@ -11,7 +20,7 @@ class BottomNavigationBarCustom extends StatefulWidget {
 }
 
 class _BottomNavigationBarCustomState extends State<BottomNavigationBarCustom> {
-  int _selectedIndex = 0;
+  String _selectedIndex = 'Главная';
 
   @override
   Widget build(BuildContext context) {
@@ -33,63 +42,21 @@ class _BottomNavigationBarCustomState extends State<BottomNavigationBarCustom> {
                 top: 4.0, right: 10.0, left: 10.0, bottom: 23.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                BottomNavigationBarCustomItem(
-                  title: "Главная",
-                  isSelected: _selectedIndex == 0,
-                  unSelectIcon: 'assets/icons/navigate_icon_unselect-1.svg',
-                  selectIcon: 'assets/icons/navigate_icon_select-1.svg',
+              children: widget.BarItemList.map(
+                (data) => BottomNavigationBarCustomItem(
+                  title: data.title,
+                  unSelectIcon: data.unselectedIcon,
+                  selectIcon: data.selectedIcon,
+                  isSelected: _selectedIndex == data.title,
                   onPressed: () {
+                    print(data);
+                    widget.setScreen(data.id);
                     setState(() {
-                      _selectedIndex = 0;
+                      _selectedIndex = data.title;
                     });
                   },
                 ),
-                BottomNavigationBarCustomItem(
-                  title: "Мед карта",
-                  isSelected: _selectedIndex == 1,
-                  unSelectIcon: 'assets/icons/navigate_icon_unselect-2.svg',
-                  selectIcon: 'assets/icons/navigate_icon_select-2.svg',
-                  onPressed: () {
-                    setState(() {
-                      _selectedIndex = 1;
-                    });
-                  },
-                ),
-                BottomNavigationBarCustomItem(
-                  title: "Тракер",
-                  isSelected: _selectedIndex == 2,
-                  unSelectIcon: 'assets/icons/navigate_icon_unselect-3.svg',
-                  selectIcon: 'assets/icons/navigate_icon_select-3.svg',
-                  onPressed: () {
-                    setState(() {
-                      _selectedIndex = 2;
-                    });
-                  },
-                ),
-                BottomNavigationBarCustomItem(
-                  title: "Чат",
-                  isSelected: _selectedIndex == 3,
-                  unSelectIcon: 'assets/icons/navigate_icon_unselect-4.svg',
-                  selectIcon: 'assets/icons/navigate_icon_select-4.svg',
-                  onPressed: () {
-                    setState(() {
-                      _selectedIndex = 3;
-                    });
-                  },
-                ),
-                BottomNavigationBarCustomItem(
-                  title: "Настройки",
-                  isSelected: _selectedIndex == 4,
-                  unSelectIcon: 'assets/icons/navigate_icon_unselect-5.svg',
-                  selectIcon: 'assets/icons/navigate_icon_select-5.svg',
-                  onPressed: () {
-                    setState(() {
-                      _selectedIndex = 4;
-                    });
-                  },
-                ),
-              ],
+              ).toList(),
             ),
           ),
         ),

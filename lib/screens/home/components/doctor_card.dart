@@ -52,7 +52,7 @@ class _DoctorCardState extends State<DoctorCard> {
       },
       child: AnimatedContainer(
         width: 320.0,
-        margin: const EdgeInsets.only(bottom: 4.0, right: 16.0),
+        margin: const EdgeInsets.only(bottom: 4.0, left: 16.0),
         transform: Matrix4.translationValues(0, _isPressed ? 4.0 : 0, 0),
         padding: const EdgeInsets.all(10.0),
         decoration: BoxDecoration(

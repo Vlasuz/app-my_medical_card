@@ -37,7 +37,7 @@ class _SelectDoctorItemState extends State<SelectDoctorItem> {
         child: AnimatedContainer(
           width: 90.0,
           transform: Matrix4.translationValues(0, _isPressed ? 4.0 : 0, 0),
-          margin: EdgeInsets.only(right: 16.0, bottom: 4.0),
+          margin: EdgeInsets.only(left: 16.0, bottom: 4.0),
           padding: EdgeInsets.only(top: 16.0, left: 1.0, right: 1.0, bottom: 6.0),
           decoration: BoxDecoration(
             color: widget.mainColor,

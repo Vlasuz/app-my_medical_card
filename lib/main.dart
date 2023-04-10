@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_medical_card/main_scaffold.dart';
 import 'package:my_medical_card/screens/doctor/doctor_screen.dart';
 import 'package:my_medical_card/screens/home/home_screen.dart';
 import 'package:my_medical_card/screens/notification/notification_screen.dart';
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'Rubik_one'),
       routes: {
-        '/': (context) => HomeScreen(),
+        '/': (context) => MainScaffold(),
         '/notification': (context) => NotificationScreen(),
         '/doctor': (context) => DoctorScreen(),
       },

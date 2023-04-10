@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../components/app_title.dart';
-import 'components/calendar_day.dart';
 import 'components/calendar_days.dart';
 import 'components/calendar_times.dart';
 import 'components/doctor_top.dart';
 import 'components/make_appointment.dart';
-import 'components/review_item.dart';
 import 'components/reviews_block.dart';
 import 'components/title_reviews.dart';
 
